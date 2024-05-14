@@ -1,15 +1,10 @@
 const answers = document.getElementById('words');
 const wordInput = document.getElementById('word-input');
 
-const createWord = (word, proximity) => {
+const createWord = (word) => {
   // Create the word element div
   const wordElement = document.createElement('div');
-  wordElement.classList.add('rounded-xl', 'w-full', 'my-2', 'px-3', 'py-1');
-  if (proximity >= 70) {
-    wordElement.classList.add('bg-green-200');
-  } else {
-    wordElement.classList.add('bg-gray-400');
-  }
+  wordElement.classList.add('rounded-xl', 'w-full', 'my-2', 'px-3', 'py-1', 'bg-gray-400');
 
   // Create the word text element
   const wordText = document.createElement('p');
@@ -20,21 +15,25 @@ const createWord = (word, proximity) => {
   // Create the proximity percentage
   const proximityElement = document.createElement('p');
   proximityElement.classList.add('font-semibold', 'text-md', 'text-gray-800');
-  proximityElement.textContent = `${proximity}%`;
+  proximityElement.textContent = `...%`;
   wordElement.appendChild(proximityElement);
 
   return wordElement;
 }
 
 const addWord = (word) => {
-  const proximity = Math.floor(Math.random() * 100) + 1;
-  const newWord = createWord(word, proximity);
+  const newWord = createWord(word);
+  const proximityText = newWord.children[1];
 
   // Hide the initial message
   const initialMessage = document.getElementById('initial-message');
   initialMessage.classList.add('hidden');
 
   answers.prepend(newWord);
+
+  diffWords("Hexagone", word).then((proximity) => {
+    proximityText.textContent = `${proximity}%`;
+  });
 
   // Clear the input
   wordInput.value = '';
