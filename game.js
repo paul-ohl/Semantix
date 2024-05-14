@@ -5,7 +5,7 @@ const createWord = (word, proximity) => {
   // Create the word element div
   const wordElement = document.createElement('div');
   wordElement.classList.add('rounded-xl', 'w-full', 'my-2', 'px-3', 'py-1');
-  if (proximity >= 90) {
+  if (proximity >= 70) {
     wordElement.classList.add('bg-green-200');
   } else {
     wordElement.classList.add('bg-gray-400');
@@ -43,4 +43,9 @@ const addWord = (word) => {
 document.getElementById('game-form').addEventListener('submit', (e) => {
   e.preventDefault();
   addWord(wordInput.value);
+});
+
+// Prevent the button from closing the keyboard on mobile
+document.getElementById('send-word').addEventListener('touchend', (e) => {
+  e.preventDefault();
 });
