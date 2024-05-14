@@ -48,4 +48,5 @@ document.getElementById('game-form').addEventListener('submit', (e) => {
 // Prevent the button from closing the keyboard on mobile
 document.getElementById('send-word').addEventListener('touchend', (e) => {
   e.preventDefault();
+  addWord(wordInput.value);
 });
