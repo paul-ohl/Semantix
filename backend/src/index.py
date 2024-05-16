@@ -1,22 +1,16 @@
 from flask import Flask, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import spacy
 import random
 
 nlp_fr = spacy.load('fr_core_news_md')
 nlp_en = spacy.load('en_core_web_md')
 app = Flask(__name__)
-cors = CORS(
-    app,
-    origins=[
-        "http://localhost",
-        "https://semantix.paulohl.fr",
-        "https://paulohl.github.io"
-    ],
-)
+cors = CORS()
 
 
 @app.route('/api/compare', methods=['POST'])
+@cross_origin()
 def compare_words():
     json_data = request.get_json()
     lang = json_data['lang']
@@ -29,19 +23,15 @@ def compare_words():
     token2 = nlp(word2)
     similarity = token1.similarity(token2)
     print("Similarity:", similarity)
-    similarity_result = str(similarity)
-    response = Flask.jsonify({'word': similarity_result})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    return str(similarity)
 
 
 @app.route('/api/random_word', methods=['POST'])
+@cross_origin()
 def get_random_word():
     lang = request.get_json()['lang']
     file_path = 'dictionaries/dictionary.' + lang + '.txt'
     with open(file_path, 'r') as f:
         lines = f.readlines()
     random_word = random.choice(lines)
-    response = Flask.jsonify({'word': random_word})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    return random_word

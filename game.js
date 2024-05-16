@@ -74,7 +74,7 @@ document.getElementById('send-word').addEventListener('touchend', (e) => {
 
 async function compareWords(lang, word1, word2) {
   try {
-    const response = await fetch('https://api.semantix.paulohl.fr/api/compare', {
+    const response = await fetch('http://localhost:5000/api/compare', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ async function compareWords(lang, word1, word2) {
 
 async function getInitialWord(lang) {
   try {
-    const response = await fetch('https://api.semantix.paulohl.fr/api/random_word', {
+    const response = await fetch('http://localhost:5000/api/random_word', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
