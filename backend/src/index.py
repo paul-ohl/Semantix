@@ -6,7 +6,15 @@ import random
 nlp_fr = spacy.load('fr_core_news_md')
 nlp_en = spacy.load('en_core_web_md')
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(
+    app,
+    origins=[
+        "http://localhost",
+        "https://paulohl.fr",
+        "https://paulohl.github.io"
+    ],
+    methods=["POST"],
+)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
