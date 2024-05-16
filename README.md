@@ -17,3 +17,5 @@ Pour produire le css minified de production:
 ```bash
 tailwind -i ./tailwind.css -o ./style.css --minify
 ```
+
+
