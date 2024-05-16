@@ -1,12 +1,15 @@
 const answers = document.getElementById('words');
 const wordInput = document.getElementById('word-input');
+let LANG = 'en';
 let HIDDEN_WORD = '';
 
 // Get the initial word
 document.addEventListener('DOMContentLoaded', async () => {
-  HIDDEN_WORD = await getInitialWord('fr');
+  const urlParams = new URLSearchParams(window.location.search);
+  LANG = urlParams.get('lang');
+  HIDDEN_WORD = await getInitialWord(LANG);
   console.log('Hidden word:', HIDDEN_WORD);
-  wordInput.placeholder = `Type a word here`;
+  wordInput.placeholder = LANG === 'en' ? `Type a word here` : `Écrivez un mot ici`;
 });
 
 const createWord = (word) => {
@@ -39,7 +42,7 @@ const addWord = (word) => {
 
   answers.prepend(newWord);
 
-  compareWords('fr', HIDDEN_WORD, word).then((proximity) => {
+  compareWords(LANG, HIDDEN_WORD, word).then((proximity) => {
     let proximityPercent = parseInt(proximity * 100);
     proximityText.textContent = `${proximityPercent}%`;
     if (proximity >= 95) {
