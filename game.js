@@ -1,5 +1,12 @@
 const answers = document.getElementById('words');
 const wordInput = document.getElementById('word-input');
+let HIDDEN_WORD = '';
+
+// Get the initial word
+document.addEventListener('DOMContentLoaded', async () => {
+  HIDDEN_WORD = await getInitialWord();
+  wordInput.placeholder = `Type a word here`;
+});
 
 const createWord = (word) => {
   // Create the word element div
@@ -31,8 +38,13 @@ const addWord = (word) => {
 
   answers.prepend(newWord);
 
-  diffWords("Hexagone", word).then((proximity) => {
+  diffWords(HIDDEN_WORD, word).then((proximity) => {
     proximityText.textContent = `${proximity}%`;
+    if (proximity === 100) {
+      alert('You win!');
+      // const successMessage = document.getElementById('success-message');
+      // successMessage.classList.remove('hidden');
+    }
   });
 
   // Clear the input
