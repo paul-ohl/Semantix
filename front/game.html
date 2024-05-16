@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Semantix - Game</title>
+  <style>
+    #words {
+      height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column-reverse;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="flex flex-col items-center justify-end h-screen bg-gray-200 p-3">
+    <div id="words" class="p-4 w-full absolute top-0 h-screen overflow-y-scroll">
+      <p id="initial-message" class="font-semibold text-md p-3">
+        Enter words to see how compatible they are with the hidden word...
+      </p>
+    </div>
+    <form id="game-form" class="flex flex-row mt-2 w-full">
+      <input autofocus type="text" id="word-input" class="w-full p-3 rounded-xl" placeholder="Wait...">
+      <button id="send-word" class="bg-yellow-500 text-white font-bold rounded-full ml-2 p-3">
+        <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#000000">
+          <path d="M120-160v-243.33L428-480l-308-78v-242l760 320-760 320Z" />
+        </svg>
+      </button>
+    </form>
+  </div>
+  <script src="game.js"></script>
+</body>
+
+</html>
