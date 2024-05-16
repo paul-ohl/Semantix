@@ -1,5 +1,6 @@
 const answers = document.getElementById('words');
 const wordInput = document.getElementById('word-input');
+const initialMessage = document.getElementById('initial-message');
 let LANG = 'en';
 let HIDDEN_WORD = '';
 
@@ -9,6 +10,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   LANG = urlParams.get('lang');
   HIDDEN_WORD = await getInitialWord(LANG);
   console.log('Hidden word:', HIDDEN_WORD);
+  if (LANG === 'fr') {
+    initialMessage.textContent = `Entrez des mots pour trouver le mot caché!`;
+    wordInput.textContent = `Chargement du modt secret...`;
+  }
+
   wordInput.placeholder = LANG === 'en' ? `Type a word here` : `Écrivez un mot ici`;
 });
 
@@ -37,7 +43,6 @@ const addWord = (word) => {
   const proximityText = newWord.children[1];
 
   // Hide the initial message
-  const initialMessage = document.getElementById('initial-message');
   initialMessage.classList.add('hidden');
 
   answers.prepend(newWord);
