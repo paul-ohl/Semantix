@@ -11,14 +11,17 @@
 <body>
   <div class="flex flex-col items-center justify-center h-screen bg-gray-200">
     <h1 class="font-bold text-2xl mb-20">Semantix!</h1>
-    <a href="./game.html">
-      <button id="btn" class="bg-yellow-500 text-black font-bold p-2 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#000000">
-          <path d="M320-202v-560l440 280-440 280Z" />
-        </svg>
-      </button>
-    </a>
+    <button id="btn" class="bg-yellow-500 text-black font-bold p-2 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#000000">
+        <path d="M320-202v-560l440 280-440 280Z" />
+      </svg>
+    </button>
+    <select id="lang-select" name="lang-select" class="rounded-full border-0 bg-transparent mt-8">
+      <option value="fr">🇫🇷</option>
+      <option value="en">🇬🇧</option>
+    </select>
   </div>
+  <script src="index.js"></script>
 </body>
 
 </html>
